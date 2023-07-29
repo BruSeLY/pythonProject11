@@ -1,0 +1,5 @@
+Xurper;250
+Durper;250
+Rurper;250
+surper;250
+Hurper;100
