@@ -190,8 +190,16 @@ def callback_query(call):
                                        f'{", ".join(direThis)}\n', reply_markup=markup)
             delete_bot = bot.send_photo(msg.chat.id, photoRadiant)
             users[msg.from_user.id].status = "vote"
-    elif call.data == "Рейтинг":
-        pass
+    elif call.data == "Rating":
+        with open("TopPlayer.txt", "r") as f:
+            f = f.read().split("\n")
+            buff = [i.split(";") for i in f]
+            top = ""
+            for i in range(len(buff)):
+                print(buff[i])
+                top += f'{i + 1}{buff[i][0]}, balance: {buff[i][1]}'
+            bot.edit_message_text(chat_id=message_id_bot.chat.id, message_id=message_id_bot.message_id,
+                                  text=f'{top}')
 
 
 bot.polling(none_stop=True, interval=0)
